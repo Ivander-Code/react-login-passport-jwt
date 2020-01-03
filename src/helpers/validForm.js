@@ -1,11 +1,9 @@
-//import React from 'react';
-
 export function validForm(fields){
     let result = {
         isValidForm: true,
         message: ''
     };
-    let regExpEmail = new RegExp('/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/');
+    let regExpEmail = new RegExp(/^[^@]+@[^@]+.[a-zA-Z]{2,}$/);
     for( let key in fields){
         if(key === 'username' || key === 'email'){
             if(regExpEmail.test(fields[key])){

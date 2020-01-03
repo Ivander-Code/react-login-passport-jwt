@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {encryptPassword} from '../helpers/bcrypt';
-import {singin, singup} from '../services/authentication.service';
+import {singup} from '../services/authentication.service';
 import history from "../helpers/history";
 import {validForm} from "../helpers/validForm";
 

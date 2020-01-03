@@ -18,6 +18,7 @@ export default function SingInAction(){
         event.persist();
         let response ={};
         let validResult = validForm(fields);
+        console.log(validResult)
         if(validResult.isValidForm){
             response = await singin(fields);
             setFields({});
