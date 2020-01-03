@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useRef} from 'react';
+import SingUpFrm from './containers/SingUpFrm';
+import SingInFrm from './containers/SingInFrm';
+import Home from './views/Home';
+import NotFoud from './views/NotFoud';
+import Profile from "./views/Profile";
+import PrivatePage from "./views/PrivatePage";
+import Navbar from './components/Navbar';
+import {Router, Route, Switch} from 'react-router-dom';
+import history from "./helpers/history";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    let message = useRef('');
 
+    return (
+        <div className="App">
+            <Navbar/>
+            <Router history={history}>
+                <Switch>
+                    <Route exact path='/' component={Home}/>
+                    <Route path='/singup' render={(props)=>
+                        <SingUpFrm {...props}/>
+                    } />
+                    <Route path='/singin' component={SingInFrm} />
+                    <PrivatePage path='/profile' message={message.current}>
+                        <Profile/>
+                    </PrivatePage>
+                    <Route component={NotFoud}/>
+                </Switch>
+            </Router>
+        </div>
+    );
+}
 export default App;
