@@ -1,7 +1,7 @@
 'use strict'
-const JWT = require('jsonwebtoken');
-const USER_MODEL = require('../model/userModel');
-const PASSPORT = require('passport');
+const JWT      = require('jsonwebtoken'),
+    USER_MODEL = require('../model/userModel'),
+    PASSPORT   = require('passport');
 let response   = { message:'',redirect:'/singup',isAuthenticated:false, userDetail:null, token:null , statusCode:400};
 
 let authVerify = (req, res, next)=>{

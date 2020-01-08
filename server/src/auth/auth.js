@@ -1,15 +1,14 @@
 'use strict'
-const PASSPORT = require('passport');
-const STRATEGY = require('passport-local').Strategy;
-const USERMODEL = require('../model/userModel');
-
+const PASSPORT = require('passport'),
+    STRATEGY = require('passport-local').Strategy,
+    USER_MODEL = require('../model/userModel');
 
 PASSPORT.serializeUser((user, done)=>{
     done(null, user.id);
 });
 
 PASSPORT.deserializeUser((id, done)=>{
-    const user= USERMODEL.findById(id);
+    const user= USER_MODEL.findById(id);
     done(null,user);
 });
 
@@ -21,7 +20,7 @@ PASSPORT.use('singup', new STRATEGY({
 },async (req, username, password, done)=>{
     let user;
     try{
-        user = await USERMODEL.findOne({username:username});
+        user = await USER_MODEL.findOne({username:username});
     }catch(e){
         return done({message:e.message});
     }
@@ -30,7 +29,7 @@ PASSPORT.use('singup', new STRATEGY({
         return done(null, false, {message:'The username is already exist'});
     }
 
-    let newUser = new USERMODEL();
+    let newUser = new USER_MODEL();
     newUser.username = username;
     newUser.password = password;
     await newUser.save();
@@ -38,7 +37,6 @@ PASSPORT.use('singup', new STRATEGY({
 }));
 
 // Sing in passport local
-
 PASSPORT.use('singin', new STRATEGY({
     usernameField:'username',
     passwordField:'password',
@@ -46,7 +44,7 @@ PASSPORT.use('singin', new STRATEGY({
 }, async(req, username, password, done)=>{
     let user;
     try{
-        user = await USERMODEL.findOne({username:username});
+        user = await USER_MODEL.findOne({username:username});
     }catch(error){
         return done({message:error.message});
     }

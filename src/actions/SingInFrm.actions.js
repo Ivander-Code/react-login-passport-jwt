@@ -7,7 +7,6 @@ export default function SingInAction(){
     const [fields, setFields] = useState({});
     const [message, setMessage] = useState('');
 
-
     function handleChange(event){
         event.persist();
         setFields((fields)=>({...fields,[event.target.name]:event.target.value}));

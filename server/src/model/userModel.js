@@ -1,7 +1,7 @@
 'use strict'
-const {Schema,model} = require('mongoose');
-const BCRIPT = require('bcryptjs');
-const userModel = new Schema({
+const {Schema,model} = require('mongoose'),
+    BCRIPT           = require('bcryptjs'),
+    USER_MODEL       = new Schema({
     username:{
         type:String,
         required: true
@@ -15,8 +15,8 @@ const userModel = new Schema({
     collection: 'user'
 });
 
-userModel.methods.validateHash = async(password, userPassword)=>{
+USER_MODEL.methods.validateHash = async(password, userPassword)=>{
     return await BCRIPT.compare(password, userPassword);
 };
 
-module.exports = model('user', userModel);
+module.exports = model('user', USER_MODEL);

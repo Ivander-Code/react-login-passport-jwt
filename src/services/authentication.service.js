@@ -25,7 +25,6 @@ let createSession = (...[token, isAuthenticated, userDetail])=>{
     localStorage.setItem('token', token);
     localStorage.setItem('isAuthenticated', isAuthenticated);
     localStorage.setItem('userDetail', JSON.stringify(userDetail));
-
 };
 
 let destroySession = ()=>{

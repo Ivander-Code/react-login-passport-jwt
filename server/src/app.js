@@ -6,10 +6,6 @@ const EXPRESS     = require('express'),
     PASSPORT      = require('passport'),
     ROUTES        = require('./routes/userRoutes'),
     CORS          = require('cors'),
-    COOKIE_PARSER = require('cookie-parser'),
-    PATH          = require('path'),
-    ENGINE        = require('ejs-mate'),
-    MONGO_STORE = require('connect-mongo')(SESSION),
     BODY_PARSER   = require('body-parser');
 
 //Initialization

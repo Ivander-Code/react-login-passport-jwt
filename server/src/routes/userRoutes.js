@@ -1,10 +1,10 @@
 'use strict'
-const {Router} = require('express');
-const PASSPORT = require('passport');
-const ROUTER   = Router();
-const JWT      = require('jsonwebtoken');
-const authVerify = require('../middlewares/authMiddleware');
-let response   = { message:'',redirect:'/singup',isAuthenticated:false, userDetail:null, token:null , statusCode:400};
+const {Router}  = require('express'),
+    PASSPORT    = require('passport'),
+    ROUTER      = Router(),
+    JWT         = require('jsonwebtoken'),
+    AUTH_VERIFY = require('../middlewares/authMiddleware');
+let response    = { message:'',redirect:'/singup',isAuthenticated:false, userDetail:null, token:null , statusCode:400};
 
 let passportAuthenticate = (authenticateName, req, res)=>{
     PASSPORT.authenticate(authenticateName,{session: false},async(error , user, info)=>{
@@ -35,7 +35,7 @@ ROUTER.post('/api/auth/singin', (req, res)=>{
     return passportAuthenticate('singin', req, res);
 });
 
-ROUTER.post('/api/auth/verifySession',authVerify,(req, res)=>{
+ROUTER.post('/api/auth/verifySession',AUTH_VERIFY,(req, res)=>{
     let {message, redirect, userDetail, isAuthenticated, token} = response;
     message         = req.message;
     redirect        = req.redirect;
