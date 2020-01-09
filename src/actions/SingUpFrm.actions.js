@@ -4,13 +4,21 @@ import {singup} from '../services/authentication.service';
 import history from "../helpers/history";
 import {validForm} from "../helpers/validForm";
 
-export default function LoginFrm (){
+export default function LoginFrm (setUsername, setPassword){
     const [fields, setFields] = useState({});
     const [message, setMessage] = useState('');
 
     const handleChange = (event)=>{
         event.persist();
-        setFields( (fields) =>({...fields,[event.target.name]:event.target.value}) );
+        setFields( (fields) =>{
+            if(event.target.name == 'username'){
+                setUsername(event.target.value);
+            }else{
+                setPassword(event.target.value);
+            }
+            return {...fields,[event.target.name]:event.target.value};
+        });
+
     };
 
     const handleSubmit = async(event)=>{

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import useForm from '../actions/SingUpFrm.actions';
 
 export default function SingUpFrm(props){
-    let {fields, handleSubmit, handleChange, message} = useForm();
+    const [userName, setUserName] = useState(''),
+          [password, setPassword] = useState('');
+    let {handleSubmit, handleChange, message} = useForm(setUserName, setPassword);
 
     if(props.location.state !== undefined){
         message = props.location.state.message
@@ -19,13 +21,13 @@ export default function SingUpFrm(props){
                             <div className='form-group'>
                                 <label className='col-form-label'>Email:</label>
                                 <input className='form-control' type='text' name='username'
-                                       placeholder='ej. test@gmail.com' value={fields.username}
+                                       placeholder='ej. test@gmail.com' value={userName}
                                        onChange={handleChange} required/>
                             </div>
                             <div className='form-group'>
                                 <label className='col-form-label'>Password:</label>
                                 <input className='form-control' type='password' name='password' placeholder='password'
-                                       onChange={handleChange} value={fields.password} required/>
+                                       onChange={handleChange} value={password} required/>
                             </div>
                             <div className='form-group'>
                                 <input className='btn btn-secondary btn-block' type='submit' value='Register'/>

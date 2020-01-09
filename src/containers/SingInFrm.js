@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import useForm from '../actions/SingInFrm.actions';
 
 export default function SingInFrm(){
-    let {fields, handleSubmit,handleChange,message} = useForm();
+    const [userName, setUserName] = useState(''),
+          [password, setPassword] = useState('');
+    let {handleSubmit,handleChange,message} = useForm(setUserName, setPassword);
 
     return(
         <>
@@ -16,12 +18,12 @@ export default function SingInFrm(){
                             <div className='form-group'>
                                 <label>Email:</label>
                                 <input type='text' className='form-control' name='username' placeholder='ej. test@gmail.com'
-                                       onChange={handleChange} value={fields.username} required/>
+                                       onChange={handleChange} value={userName} required/>
                             </div>
                             <div className='form-group'>
                                 <label>Password:</label>
                                 <input type='password' className='form-control' name='password' placeholder='password'
-                                       onChange={handleChange} value={fields.password} required/>
+                                       onChange={handleChange} value={password} required/>
                             </div>
                             <div className='form-group'>
                                 <input type='submit' className='btn btn-secondary btn-block' value='LogIn'/>

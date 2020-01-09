@@ -3,13 +3,20 @@ import history from '../helpers/history';
 import {singin} from '../services/authentication.service';
 import {validForm} from '../helpers/validForm';
 
-export default function SingInAction(){
+export default function SingInAction(setUserName, setPassword){
     const [fields, setFields] = useState({});
     const [message, setMessage] = useState('');
 
     function handleChange(event){
         event.persist();
-        setFields((fields)=>({...fields,[event.target.name]:event.target.value}));
+        setFields((fields)=>{
+            if(event.target.name == 'username'){
+                setUserName(event.target.value);
+            }else{
+                setPassword(event.target.value);
+            }
+            return {...fields,[event.target.name]:event.target.value}
+        });
     }
 
     async function handleSubmit(event){
