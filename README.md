@@ -1,4 +1,4 @@
-## Created Login using react, passport and jwt 
+## Created Login using react, redux, passport, jwt , webpack and babel.
 
 In the project directory, you can find:
 

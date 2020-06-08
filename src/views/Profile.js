@@ -1,16 +1,14 @@
+/** Dependencies */
 import React from 'react';
-import {getSessionItem} from '../services/authentication.service'
+import { useSelector } from 'react-redux';
 
-export default function Profile(){
-    const userDetail = JSON.parse(getSessionItem('userDetail')) ;
-
-    return(
-        <div className='text-center'>
-            <h1>WELCOME</h1>
-            <div className='text-dark'>Username: {
-                (userDetail.username)?userDetail.username:''
-            }
-            </div>
-        </div>
-    );
+/** Component */
+export default function Profile() {
+  const userDetail = useSelector(state => state.session.userDetail);
+  return (
+    <div className='text-center'>
+      <h3 className='text-muted mb-3'>WELCOME</h3>
+      <div className='text-dark'> {userDetail.username ?? ''}</div>
+    </div>
+  );
 }
