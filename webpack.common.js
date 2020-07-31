@@ -2,11 +2,11 @@ const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const dotenv = require('dotenv-webpack');
- const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: [path.resolve(__dirname,'src/index.js')],
+    app: [path.resolve(__dirname, 'src/index.js')],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -15,7 +15,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: 'babel-loader',
       },
@@ -46,9 +46,9 @@ module.exports = {
       allowEmptyValues: false,
       systemvars: true,
       silent: true,
-    })
+    }),
   ],
-  resolve:{
-    extensions:['.js','.css','.json']
-  }
+  resolve: {
+    extensions: ['.js', '.css', '.json','.jsx'],
+  },
 };
